@@ -8,24 +8,24 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="welcome">Welcome, Nerds!</h1>
+    <h1 id="welcomeText" class="welcome">Welcome, Nerds!</h1>
     <button id="startQuizBtn" class="start-btn">Start Quiz</button>
 
     <div id="quizContainer" class="quiz-container">
       <div class="quiz-box">
         <p id="questionText"></p>
         <div class="options">
-          <button class="option-btn" onclick="checkAnswer(0)">Option 1</button>
-          <button class="option-btn" onclick="checkAnswer(1)">Option 2</button>
-          <button class="option-btn" onclick="checkAnswer(2)">Option 3</button>
-          <button class="option-btn" onclick="checkAnswer(3)">Option 4</button>
+          <button class="option-btn" id="option0" onclick="checkAnswer(0)">Option 1</button>
+          <button class="option-btn" id="option1" onclick="checkAnswer(1)">Option 2</button>
+          <button class="option-btn" id="option2" onclick="checkAnswer(2)">Option 3</button>
+          <button class="option-btn" id="option3" onclick="checkAnswer(3)">Option 4</button>
         </div>
-        <p id="feedback"></p>
+        <p id="feedback"></p> <!-- Feedback section -->
       </div>
     </div>
 
     <div id="resultPopup" class="result-popup">
-      <p>okay bye!</p>
+      <p id="resultMessage">OKAY BYE</p>
       <p id="scoreText"></p>
     </div>
   </div>

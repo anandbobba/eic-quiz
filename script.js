@@ -1,47 +1,47 @@
 const questions = [
     {
       question: "What is the largest economy in the world?",
-      options: ["1.USA", "2.China", "3.Germany", "4.India"],
+      options: ["USA", "China", "Germany", "India"],
       correct: 0
     },
     {
       question: "Which country has the highest GDP per capita?",
-      options: ["1.USA", "2.Qatar", "3.Luxembourg", "4.Singapore"],
+      options: ["USA", "Qatar", "Luxembourg", "Singapore"],
       correct: 2
     },
     {
       question: "Which organization regulates global trade?",
-      options: ["1.IMF", "2.World Bank", "3.WTO", "4.OECD"],
+      options: ["IMF", "World Bank", "WTO", "OECD"],
       correct: 2
     },
     {
       question: "Which currency is used in Japan?",
-      options: ["1.Yuan", "2.Won", "3.Yen", "4.Dollar"],
+      options: ["Yuan", "Won", "Yen", "Dollar"],
       correct: 2
     },
     {
       question: "What is the main export of Saudi Arabia?",
-      options: ["1.Oil", "2.Gold", "3.Electronics", "4.Textiles"],
+      options: ["Oil", "Gold", "Electronics", "Textiles"],
       correct: 0
     },
     {
       question: "Which country is known for the Silicon Valley?",
-      options: ["1.China", "2.USA", "3.India", "4.Germany"],
+      options: ["China", "USA", "India", "Germany"],
       correct: 1
     },
     {
       question: "What is the main economic activity in Switzerland?",
-      options: ["1.Agriculture", "2.Banking", "3.Mining", "4.Oil"],
+      options: ["Agriculture", "Banking", "Mining", "Oil"],
       correct: 1
     },
     {
       question: "Which country has the highest inflation rate?",
-      options: ["1.Venezuela", "2.Zimbabwe", "3.urkey", "4.Argentina"],
+      options: ["Venezuela", "Zimbabwe", "Turkey", "Argentina"],
       correct: 0
     },
     {
       question: "What is the IMF's main role?",
-      options: ["1.Global health", "2.Trade negotiations", "3.Economic stability", "4.Military alliances"],
+      options: ["Global health", "Trade negotiations", "Economic stability", "Military alliances"],
       correct: 2
     }
   ];
@@ -53,40 +53,61 @@ const questions = [
   const quizContainer = document.getElementById('quizContainer');
   const questionText = document.getElementById('questionText');
   const optionButtons = document.querySelectorAll('.option-btn');
-  const feedback = document.getElementById('feedback');
   const resultPopup = document.getElementById('resultPopup');
   const scoreText = document.getElementById('scoreText');
+  const welcomeText = document.getElementById('welcomeText');
+  const dialogPopup = document.createElement('div');
+  dialogPopup.className = 'dialog-popup';
+  document.body.appendChild(dialogPopup);
+  const feedbackText = document.getElementById('feedback');
   
   startQuizBtn.addEventListener('click', startQuiz);
   
   function startQuiz() {
+    welcomeText.style.display = 'none'; // Hide the welcome quote
     startQuizBtn.style.display = 'none';
     quizContainer.style.display = 'block';
     showQuestion();
   }
   
   function showQuestion() {
-    feedback.textContent = '';
+    dialogPopup.style.display = 'none'; // Hide dialog when showing the next question
+    feedbackText.style.display = 'none'; // Hide feedback message
     const currentQuestion = questions[currentQuestionIndex];
     questionText.textContent = currentQuestion.question;
     optionButtons.forEach((button, index) => {
-      button.textContent = currentQuestion.options[index];
+      button.disabled = false; // Enable buttons for new question
+      button.textContent = `${index + 1}. ${currentQuestion.options[index]}`;
     });
   }
   
   function checkAnswer(selectedOption) {
+    optionButtons.forEach(button => button.disabled = true); // Disable buttons after an answer is selected
     const currentQuestion = questions[currentQuestionIndex];
+    feedbackText.style.display = 'block'; // Show feedback message
+  
     if (selectedOption === currentQuestion.correct) {
       score++;
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        showQuestion();
-      } else {
-        endQuiz();
-      }
+      showFeedback("Yay!", "yay");
     } else {
-      feedback.textContent = 'Oops!';
+      score--;
+      showFeedback("Oops!", "oops");
     }
+  
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      setTimeout(() => {
+        feedbackText.style.display = 'none'; // Hide feedback for next question
+        showQuestion();
+      }, 1000);
+    } else {
+      setTimeout(endQuiz, 1000);
+    }
+  }
+  
+  function showFeedback(message, className) {
+    feedbackText.textContent = message;
+    feedbackText.className = className;
   }
   
   function endQuiz() {

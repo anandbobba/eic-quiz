@@ -33,15 +33,19 @@ body {
   .quiz-box {
     background-color: white;
     color: black;
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px;
-    box-shadow: 0 0 10px red;
+    box-shadow: 0 0 15px rgb(217, 200, 10);
     margin-top: 20px;
+  }
+  
+  .options {
+    text-align: left;
   }
   
   .option-btn {
     display: block;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     color: black;
     margin: 10px 0;
     padding: 10px;
@@ -49,19 +53,47 @@ body {
     border: none;
   }
   
+  .option-btn::before {
+    content: attr(data-option-number) " ";
+    font-weight: bold;
+  }
+  
   .result-popup {
     display: none;
     background-color: white;
     color: black;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgb(0, 255, 145);
+    box-shadow: 0 0 15px rgb(255, 255, 255);
+  }
+  
+  .dialog-popup {
+    display: none;
+    background-color: white;
+    color: black;
+    padding: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgb(255, 249, 249);
+    text-align: center;
   }
   
   #feedback {
+    font-size: 1.5em;
+    margin-top: 10px;
+    display: none; /* Initially hidden */
+  }
+  
+  .yay {
+    color: green;
+  }
+  
+  .oops {
     color: red;
   }
   
