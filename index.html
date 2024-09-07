@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Economics Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="welcome">Welcome, Nerds!</h1>
+    <button id="startQuizBtn" class="start-btn">Start Quiz</button>
+
+    <div id="quizContainer" class="quiz-container">
+      <div class="quiz-box">
+        <p id="questionText"></p>
+        <div class="options">
+          <button class="option-btn" onclick="checkAnswer(0)">Option 1</button>
+          <button class="option-btn" onclick="checkAnswer(1)">Option 2</button>
+          <button class="option-btn" onclick="checkAnswer(2)">Option 3</button>
+          <button class="option-btn" onclick="checkAnswer(3)">Option 4</button>
+        </div>
+        <p id="feedback"></p>
+      </div>
+    </div>
+
+    <div id="resultPopup" class="result-popup">
+      <p>okay bye!</p>
+      <p id="scoreText"></p>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
